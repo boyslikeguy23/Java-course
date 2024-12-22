@@ -1,0 +1,24 @@
+The java.io package contains nearly every class you might ever need to perform input and output (I/O) in Java. All these streams represent an input source and an output destination. The stream in the java.io package supports many data such as primitives, Object, localized characters, etc.
+A stream can be defined as a sequence of data. The InputStream is used to read data from a source and the OutputStream is used for writing data to a destination. Java provides strong but flexible support for I/O related to Files and networks but this tutorial covers very basic functionality related to streams and I/O. We would see most commonly used example one by one:
+Byte Streams
+Java byte streams are used to perform input and output of 8-bit bytes. Though there are many classes related to byte streams but the most frequently used classes are, FileInputStream and FileOutputStream. Following is an example which makes use of these two classes to copy an input file into an output file:
+
+import java.io.FileInputStream; import java.io.FileOutputStream; import java.io.IOException;
+public class CopyFile {
+public static void main(String args[]) throws IOException {
+FileInputStream in = null;
+FileOutputStream out = null;
+try {
+in = new FileInputStream("input.txt"); out = new FileOutputStream("output.txt");
+int c;
+while ((c = in.read()) != -1) {
+}
+out.write(c);
+} finally {
+if (in != null) { in.close();
+}
+if (out != null) {
+out.close();
+}
+Now let's have a file input.txt with the following content:
+This is test for copy file.
