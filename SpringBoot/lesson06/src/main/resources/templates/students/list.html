@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equipv="X-UA-Compatible" content="ie-edge">
+        <title>Danh sách sinh vien</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    </head>
+    <body style="background: gray">
+        <header class="container bg-white">
+            <div class="logo">
+                <img src="https://devmaster.edu.vn/images/logo.png">
+            </div>
+            <section class="container bg-white py-3">
+                <h2>DANH SÁCH SINH VIÊN</h2>
+                <hr/>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Age</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="student:${students}">
+                            <td th:text="${student.id}">1</td>
+                            <td th:text="${student.name}">John Doe</td>
+                            <td th:text="${student.email}">john@example.com</td>
+                            <td th:text="${student.age}">20</td>
+                            <td>
+                                <a th:href="@{/students/view/{id}(id=${student.getId()})}">View</a>
+                                <a th:href="@{/students/edit/{id}(id=${student.getId()})}">Edit</a>
+                                <a th:href="@{/students/delete/{id}(id=${student.getId()})}" onclick="return confirm('Bạn có muon xoá không?')">Delete</a>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="/students/add-new" class="btn btn-primary">Add New Student</a>
+            </section>
+        </header>
+    </body>
+</html>

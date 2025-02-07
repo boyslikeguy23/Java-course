@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<!-- Su dung Header Fragment-->
+<head th:replace="fragments/_layout::head(${title})">
+    <title>Devmaster</title>
+</head>
+<body>
+<!--Using Header Fragment-->
+    <header th:replace="fragments/_layout::_header"></header>
+<!--    Main Body-->
+    <section class="container" style="min-height:268px">
+        <div class="row">
+            <h1>This is mainpage</h1>
+        </div>
+        <nav th:insert="fragments/_layout::menu"></nav>
+    </section>
+<!--Using Footer Fragment-->
+<footer th:replace="fragments/_layout::_footer"></footer>
+</body>
+</html>
