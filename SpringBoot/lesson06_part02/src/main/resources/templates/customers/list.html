@@ -34,7 +34,6 @@
                             <td th:text="${customer.id}">1</td>
                             <td th:text="${customer.username}">John Doe</td>
                             <td th:text="${customer.password}">John Doe</td>
-                            <!--/*@thymesVar id="full_name" type=""*/-->
                             <td th:text="${customer.fullName}">john@example.com</td>
                             <td th:text="${customer.address}">20</td>
                             <td th:text="${customer.phone}">20</td>
@@ -50,7 +49,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <a href="/customers/add-new" class="btn btn-primary">Add New Student</a>
+                <a href="/customers/add-new" class="btn btn-primary">Add New Customer</a>
             </section>
         </header>
     </body>

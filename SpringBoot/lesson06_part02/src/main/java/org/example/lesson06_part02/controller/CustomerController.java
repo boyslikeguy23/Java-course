@@ -1,16 +1,14 @@
 package org.example.lesson06_part02.controller;
 
 
+import org.example.lesson06_part02.dto.CustomerDTO;
 import org.example.lesson06_part02.entity.Customer;
 import org.example.lesson06_part02.repository.CustomerRepository;
 import org.example.lesson06_part02.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,6 +36,28 @@ public class CustomerController {
     @PostMapping("/add-new")
     public String saveNewCustomer(@ModelAttribute("customer") Customer customer) {
         customerRepository.save(customer);
+        return "redirect:/customers";
+    }
+    @GetMapping("/view/{id}")
+    public String viewCustomer(@PathVariable(value = "id") Long id, Model model) {
+        Customer customer = customerService.findById(id).orElseThrow(() -> new IllegalArgumentException("Customer not found id " + id));
+        model.addAttribute("customer", customer);
+        return "customers/view";
+    }
+    @GetMapping("/edit/{id}")
+    public String editCustomer(@PathVariable(value = "id") Long id, Model model) {
+        Customer customer = customerService.findById(id).orElseThrow(() -> new IllegalArgumentException("Customer not found id " + id));
+        model.addAttribute("customer", customer);
+        return "customers/edit";
+    }
+    @PutMapping("/update/{id}")
+    public String updateCustomer(@ModelAttribute("customer") CustomerDTO customer, @PathVariable(value = "id") Long id) {
+        customerService.update(id, customer);
+        return "redirect:/customers/view/" + id;
+    }
+    @GetMapping("/delete/{id}")
+    public String deleteCustomer(@PathVariable(value = "id") Long id) {
+        customerService.deleteCustomerById(id);
         return "redirect:/customers";
     }
 }

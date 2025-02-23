@@ -5,7 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -24,6 +26,7 @@ public class Customer {
     private String address;
     private String phone;
     private String email;
-    private Date birthDay;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate birthDay;
     private boolean active;
 }

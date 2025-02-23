@@ -1,7 +1,9 @@
 package org.example.lesson06_part02.dto;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -18,6 +20,7 @@ public class CustomerDTO {
     private String address;
     private String phone;
     private String email;
-    private Date birthDay;
+    @DateTimeFormat(pattern = "MM-dd-MM-yyyy")
+    private LocalDate birthDay;
     private boolean active;
 }
