@@ -15,12 +15,11 @@ import java.util.List;
 @Controller
 @RequestMapping("/customers")
 public class CustomerController {
-    private final CustomerRepository customerRepository;
     public CustomerService customerService;
     @Autowired
-    public CustomerController(CustomerService customerService, CustomerRepository customerRepository) {
+    public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
-        this.customerRepository = customerRepository;
+
     }
     @GetMapping
     public String getAllCustomers(Model model) {
@@ -34,8 +33,8 @@ public class CustomerController {
         return "customers/create";
     }
     @PostMapping("/add-new")
-    public String saveNewCustomer(@ModelAttribute("customer") Customer customer) {
-        customerRepository.save(customer);
+    public String saveNewCustomer(@ModelAttribute("customer") CustomerDTO customer) {
+        customerService.save(customer);
         return "redirect:/customers";
     }
     @GetMapping("/view/{id}")
@@ -50,7 +49,7 @@ public class CustomerController {
         model.addAttribute("customer", customer);
         return "customers/edit";
     }
-    @PutMapping("/update/{id}")
+    @PostMapping("/update/{id}")
     public String updateCustomer(@ModelAttribute("customer") CustomerDTO customer, @PathVariable(value = "id") Long id) {
         customerService.update(id, customer);
         return "redirect:/customers/view/" + id;
