@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/_layout::head(${title})">
+    <title>Devmaster</title>
+</head>
+<body>
+<header th:replace="fragments/_layout::header"></header>
+<section class="container" style="min-height: 268px">
+    <div class="row">
+        <h1>Đây là trang chủ</h1>
+    </div>
+    <nav th:insert="fragments/_layout::menu"></nav>
+</section>
+<footer th:replace="fragments/_layout::footer"></footer>
+</body>
+</html>
