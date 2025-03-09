@@ -36,7 +36,7 @@
                         <a th:href="@{/category/edit/{id}(id=${category.id})}" class="btn btn-warning btn-sm">Edit</a>
                     </td>
                     <td>
-                        <a
+                        <a th:href="@{/category/delete/{id}(id=${category.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete this category?')">Delete</a>
                     </td>
                 </tr>
                 </tbody>

@@ -5,6 +5,7 @@ import org.example.lesson07_01.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,14 +15,19 @@ public class ProductService {
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
-    public Optional<Product> findById(long id) {
+    public List<Product> getAllProducts() {
+        System.out.println(productRepository.findAll());
+
+        return productRepository.findAll();
+    }
+    public Optional<Product> findById(Long id) {
         return productRepository.findById(id);
     }
-    public Product saveProduct(Product product) {
+    public void saveProduct(Product product) {
         System.out.println(product);
-        return productRepository.save(product);
+        productRepository.save(product);
     }
-    public void deleteProduct(long id) {
+    public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
 

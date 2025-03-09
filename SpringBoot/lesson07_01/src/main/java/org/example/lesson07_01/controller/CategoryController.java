@@ -14,25 +14,31 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping
-    public String getCategory(Model model) {
+    public String getAllCategory(Model model) {
         model.addAttribute("categories", categoryService.getAllCategories());
         return "category/category-list";
     }
 
     @GetMapping("/create")
     public String createCategory(Model model) {
-        model.addAttribute("categories", new Category());
+        model.addAttribute("category", new Category());
+        return "category/category-form";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editCategory(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("category", categoryService.getCategoryById(id).orElse(null));
         return "category/category-form";
     }
 
     @PostMapping("/create")
-    public String createCategory(@ModelAttribute("categories") Category category) {
+    public String saveCategory(@ModelAttribute("category") Category category) {
         categoryService.saveCategory(category);
         return "redirect:/category";
     }
 
     @PostMapping("/create/{id}")
-    public String updateCategory(@PathVariable("id") Long id, @ModelAttribute("categories") Category category) {
+    public String updateCategory(@PathVariable("id") Long id, @ModelAttribute("category") Category category) {
        category.setId(id);
        categoryService.saveCategory(category);
        return "redirect:/category";
