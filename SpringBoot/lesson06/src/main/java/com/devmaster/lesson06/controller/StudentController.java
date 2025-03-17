@@ -46,7 +46,7 @@ public class StudentController {
         model.addAttribute("student", student);
         return "students/edit";
     }
-    @PutMapping("/update/{id}")
+    @PostMapping("/update/{id}")
     public String updateStudent(@PathVariable (value = "id") Long id, @ModelAttribute("student") StudentDTO student) {
         studentService.updateStudentById(id, student);
         return "redirect:/students";
