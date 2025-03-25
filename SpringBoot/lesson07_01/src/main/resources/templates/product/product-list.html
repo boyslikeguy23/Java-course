@@ -41,10 +41,10 @@
             <td th:text="${product.category.categoryName}"></td>
             <td th:text="${product.status ? 'Available' : 'Out of stock'}"></td>
             <td>
-                <a th:href="@{/templates/product/edit/{id}(id=${product.id})}" class="btn btn-warning btn-sm">Edit</a>
+                <a th:href="@{/product/edit/{id}(id=${product.id})}" class="btn btn-warning btn-sm">Edit</a>
             </td>
             <td>
-                <a th:href="@{/templates/product/delete/{id}(id=${product.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete this category?')">Delete</a>
+                <a th:href="@{/product/delete/{id}(id=${product.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete this category?')">Delete</a>
             </td>
         </tr>
         </tbody>

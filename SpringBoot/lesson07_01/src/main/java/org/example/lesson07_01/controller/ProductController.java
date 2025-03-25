@@ -2,6 +2,7 @@ package org.example.lesson07_01.controller;
 
 import org.example.lesson07_01.entity.Category;
 import org.example.lesson07_01.entity.Product;
+import org.example.lesson07_01.service.CategoryService;
 import org.example.lesson07_01.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CategoryService categoryService;
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
@@ -38,6 +41,7 @@ public class ProductController {
     @GetMapping("/edit/{id}")
     public String editProduct(Model model, @PathVariable Long id) {
         model.addAttribute("product", productService.findById(id).orElse(null));
+        model.addAttribute("categories", categoryService.getAllCategories()); // Đảm bảo danh sách category có dữ liệu
         return "product/product-form";
     }
     @PostMapping("/update/{id}")
