@@ -24,6 +24,8 @@ public class BookController {
     @GetMapping("/create")
     public String createBook(Model model) {
         model.addAttribute("book", new Book());
+        model.addAttribute("categories", categoryService.getAllCategories()); // Đảm bảo danh sách category có dữ liệu
+
         return "book/book-form";
     }
     @PostMapping("/save")
