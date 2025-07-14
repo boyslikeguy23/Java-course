@@ -17,8 +17,59 @@
             <div class="card-body">
                 <div class="mb-3 row">
                     <label for="fullName" class="col-sm-2-col-form-label">Họ và tên</label>
-                    <input type="text" id="fullName" th:field="*{fullName}" class="form-control">
+                    <div class="col-sm-10">
+                        <input type="text" id="fullName" th:field="*{fullName}" class="form-control">
+                        <span th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="text-danger"></span>
+                    </div>
                 </div>
+                <div class="mb-3 row">
+                    <label for="username" class="col-sm-2 col-form-label">Tài khoản</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="username" th:field="*{username}" class="form-control"/>
+                        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="password" class="col-sm-2 col-form-label">Mật khẩu</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="password" th:field="*{password}" class="form-control">
+                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="email" th:field="*{email}" class="form-control">
+                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="phone" class="col-sm-2 col-form-label">Số điện thoại</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="phone" th:field="*{phone}" class="form-control">
+                        <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="address" class="col-sm-2-col-form-label">Địa chỉ</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="address" th:field="*{address}" class="form-control">
+                        <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="isActive" class="col-sm-2-col-form-label">Trạng thái</label>
+                    <div class="col-sm-10">
+                        <input type="checkbox" id="isActive" th:field="*{isActive}" class="form-control">
+                        <label for="isActive" th:if="${user.getIsActive()}">Hoạt động</label>
+                        <label for="isActive" th:if="${!user.getIsActive()}">Khoá</label>
+                        <span th:if="${#fields.hasErrors('isActive')}" th:errors="*{isActive}" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a href="/users" class="btn btn-secondary">Back to list</a>
             </div>
         </div>
     </form>
