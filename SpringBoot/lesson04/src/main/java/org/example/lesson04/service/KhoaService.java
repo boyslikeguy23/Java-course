@@ -2,6 +2,8 @@ package org.example.lesson04.service;
 
 
 import org.example.lesson04.dto.KhoaDTO;
+import org.example.lesson04.entity.Khoa;
+import org.example.lesson04.entity.MonHoc;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,37 +12,47 @@ import java.util.stream.Collectors;
 
 @Service
 public class KhoaService {
-    private final List<KhoaDTO> khoas = new ArrayList<>();
+    private final List<Khoa> khoas = new ArrayList<>();
 
     public KhoaService() {
-        khoas.add(new KhoaDTO("KH01", "Khoa Toán"));
-        khoas.add(new KhoaDTO("KH02", "Khoa Lý"));
-        khoas.add(new KhoaDTO("KH03", "Khoa Hóa"));
-        khoas.add(new KhoaDTO("KH04", "Khoa Sinh"));
-        khoas.add(new KhoaDTO("KH05", "Khoa Tin"));
+        khoas.add(new Khoa("KH01", "Khoa Toán"));
+        khoas.add(new Khoa("KH02", "Khoa Lý"));
+        khoas.add(new Khoa("KH03", "Khoa Hóa"));
+        khoas.add(new Khoa("KH04", "Khoa Sinh"));
+        khoas.add(new Khoa("KH05", "Khoa Tin"));
     }
 
-    public List<KhoaDTO> getAll() {
-        return new ArrayList<>(khoas);
+    public List<Khoa> getAll() {
+        return khoas;
     }
 
-    public List<KhoaDTO> getByMakh(String makh) {
-        return khoas.stream()
-                .filter(k -> k.getMakh().equalsIgnoreCase(makh))
-                .collect(Collectors.toList());
+    public Khoa getByMakh(String makh) {
+        for (Khoa khoa : khoas) {
+            if (khoa.getMakh().equalsIgnoreCase(makh)) {
+                return khoa;
+            }
+        }
+        return null;
     }
 
     public void addKhoa(KhoaDTO khoa) {
-        khoas.add(khoa);
+
+        Khoa newKhoa = new Khoa();
+        newKhoa.setMakh(khoa.getMakh());
+        newKhoa.setTenkh(khoa.getTenkh());
+        khoas.add(newKhoa);
+
     }
 
     public void editKhoa(String makh, KhoaDTO updatedKhoa) {
-        for (int i = 0; i < khoas.size(); i++) {
-            if (khoas.get(i).getMakh().equalsIgnoreCase(makh)) {
-                khoas.set(i, updatedKhoa);
-                return;
-            }
+        Khoa existingKhoa = getByMakh(makh);
+        if (existingKhoa != null) {
+            existingKhoa.setTenkh(updatedKhoa.getTenkh());
         }
+        // Alternatively, you can use streams to find and update
+        // khoas.stream().filter(k -> k.getMakh().equalsIgnoreCase(makh))
+        //       .findFirst()
+        //       .ifPresent(k -> k.setTenkh(updatedKhoa.getTenkh()));
     }
 
     public boolean deleteKhoa(String makh) {

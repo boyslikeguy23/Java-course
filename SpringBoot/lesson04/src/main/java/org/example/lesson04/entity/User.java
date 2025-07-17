@@ -1,7 +1,6 @@
 package org.example.lesson04.entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -15,8 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     Long id;
 
     String username;
