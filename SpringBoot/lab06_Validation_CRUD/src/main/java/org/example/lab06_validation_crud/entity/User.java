@@ -21,6 +21,7 @@ public class User {
 
     @NotBlank(message = "Name cannot be null")
     @Size(min = 3, message = "Name must be at least 3 characters")
+    @Column(name = "full_name", nullable = false)
     private String fullName;
 
     @NotBlank(message = "Username cannot be null")
@@ -36,7 +37,7 @@ public class User {
     @Email(message = "Email not invalid")
     private String email;
 
-    @Pattern(regexp="^\\+?[0-9]{10, 15}$", message = "Phone must contain number characters in 10 - 15 length")
+    @Pattern(regexp="^\\+?[0-9]{10,15}$", message = "Phone must contain number characters in 10 - 15 length")
     private String phone;
     private String address;
     private Boolean isActive;

@@ -34,7 +34,7 @@ public class UserController {
     @PostMapping("/save")
     public String saveUser(@Validated @ModelAttribute("user") User user, BindingResult result, Model model) {
         if (userService.existsByUsername(user.getUsername()) && user.getId()==null) {
-            result.rejectValue("userName", "error.user", "Username already exists");
+            result.rejectValue("username", "error.user", "Username already exists");
             return "user/form"; //Quay lai form neu co loi
         }
         if (result.hasErrors()) {

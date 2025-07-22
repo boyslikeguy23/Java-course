@@ -58,11 +58,10 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="isActive" class="col-sm-2-col-form-label">Trạng thái</label>
+                    <label for="isActive" class="col-sm-2 col-form-label">Trạng thái</label>
                     <div class="col-sm-10">
-                        <input type="checkbox" id="isActive" th:field="*{isActive}" class="form-control">
-                        <label for="isActive" th:if="${user.getIsActive()}">Hoạt động</label>
-                        <label for="isActive" th:if="${!user.getIsActive()}">Khoá</label>
+                        <input type="checkbox" id="isActive" th:field="*{isActive}">
+                        <label for="isActive" th:text="${user.isActive ? 'Hoạt động' : 'Khoá'}"></label>
                         <span th:if="${#fields.hasErrors('isActive')}" th:errors="*{isActive}" class="text-danger"></span>
                     </div>
                 </div>
