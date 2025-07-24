@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+<!--    Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <title>Customer List</title>
+</head>
+<body>
+    <section class="container border my-3 p-2">
+        <h2>Customer List</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Mã khách hàng</th>
+                    <th>Tài khoản</th>
+                    <th>Mật khẩu</th>
+                    <th>Họ và tên</th>
+                    <th>Địa chỉ</th>
+                    <th>Số điện thoại</th>
+                    <th>Email</th>
+                    <th>Ngày sinh</th>
+                    <th>Trạng thái</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="customer : ${customers}">
+                    <td th:text="${customer.id}"></td>
+                    <td th:text="${customer.username}"></td>
+                    <td th:text="${customer.password}"></td>
+                    <td th:text="${customer.fullName}"></td>
+                    <td th:text="${customer.address}"></td>
+                    <td th:text="${customer.phone}"></td>
+                    <td th:text="${customer.email}"></td>
+                    <td th:text="${customer.birthDay}"></td>
+                    <td th:text="${customer.active} ? 'Hoạt động' : 'Bị khoá'"></td>                    <td>
+                        <a th:href="@{/customers/edit/{id}(id=${customer.id})}">Edit</a>
+                        <a th:href="@{/customers/delete/{id}(id=${customer.id})}">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/customers/new" class="btn btn-primary">Create New Customer</a>
+    </section>
+</body>
+</html>

@@ -4,13 +4,14 @@ import com.example.lab06_Validation_CRUD_part02.dtos.requests.CustomerRequestDTO
 import com.example.lab06_Validation_CRUD_part02.models.Customer;
 import com.example.lab06_Validation_CRUD_part02.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/customers")
 public class CustomerController {
 
@@ -26,39 +27,53 @@ public class CustomerController {
     public String getCustomers(Model model) {
         List<Customer> customers = customerService.getAllCustomers();
         model.addAttribute("customers", customers);
-        return "customer/list";
+        return "customers/list";
     }
 
     @GetMapping("/new")
     public String createCustomerForm(Model model) {
-        Customer newCustomer = new Customer();
+        CustomerRequestDTO newCustomer = new CustomerRequestDTO();
         newCustomer.setActive(true);
         model.addAttribute("customer", newCustomer);
-        return "customer/form";
+        return "customers/form";
     }
 
-    @PostMapping("/save/{id}")
-    public String saveCustomer(@PathVariable Long id, @ModelAttribute CustomerRequestDTO customerRequestDTO, Model model, BindingResult result) {
-        if (customerService.existsByUsername(customerRequestDTO.getUsername()) && id == null) {
+    @PostMapping("/save")
+    public String saveCustomer(@ModelAttribute CustomerRequestDTO customerRequestDTO, Model model, BindingResult result) {
+        System.out.println("ID nhận được từ form: " + customerRequestDTO.getId()); // Thêm dòng này để debug
+
+        if (customerService.existsByUsername(customerRequestDTO.getUsername()) && customerRequestDTO.getId() == null) {
             model.addAttribute("error", "Username already exists");
-            return "customer/form";
+            return "customers/form";
         }
-        if (customerService.existsByEmail(customerRequestDTO.getEmail()) && id == null) {
+        if (customerService.existsByEmail(customerRequestDTO.getEmail()) && customerRequestDTO.getId() == null) {
             model.addAttribute("error", "Email already exists");
-            return "customer/form";
+            return "customers/form";
         }
         if (result.hasErrors()) {
-            return "customer/form";
+            return "customers/form";
         }
-        customerService.saveCustomer(id, customerRequestDTO);
+        customerService.saveCustomer(customerRequestDTO);
         return "redirect:/customers/all";
     }
 
     @GetMapping("/edit/{id}")
     public String editCustomerForm(@PathVariable Long id, Model model) throws IllegalAccessException {
         Customer editingCustomer = customerService.getCustomerById(id).orElseThrow(() -> new IllegalAccessException("Invalid customer Id: " + id));
-        model.addAttribute("customer", editingCustomer);
-        return "customer/form";
+        // model.addAttribute("customer", editingCustomer);
+        CustomerRequestDTO dto = new CustomerRequestDTO(
+        editingCustomer.getId(),
+        editingCustomer.getUsername(),
+        editingCustomer.getPassword(),
+        editingCustomer.getFullName(),
+        editingCustomer.getAddress(),
+        editingCustomer.getPhone(),
+        editingCustomer.getEmail(),
+        editingCustomer.getBirthDay(),
+        editingCustomer.isActive()
+    );
+        model.addAttribute("customer", dto);
+        return "customers/form";
     }
 
     @GetMapping("/delete/{id}")

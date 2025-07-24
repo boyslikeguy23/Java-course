@@ -12,6 +12,8 @@ import java.time.LocalDate;
 @Data
 public class CustomerRequestDTO {
 
+    private Long id;
+
     private String username;
 
     private String password;

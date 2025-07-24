@@ -30,19 +30,30 @@ public class CustomerService {
     }
 
     @Transactional
-    public void saveCustomer(Long id, CustomerRequestDTO customerRequestDTO) {
-        Customer customer = customerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Customer not found"));
-
-        customer.setUsername(customerRequestDTO.getUsername());
-        customer.setPassword(customerRequestDTO.getPassword());
-        customer.setFullName(customerRequestDTO.getFullName());
-        customer.setAddress(customerRequestDTO.getAddress());
-        customer.setPhone(customerRequestDTO.getPhone());
-        customer.setEmail(customerRequestDTO.getEmail());
-        customer.setBirthDay(customerRequestDTO.getBirthDay());
-        customer.setActive(customerRequestDTO.isActive());
-        customerRepository.save(customer);
+    public Customer saveCustomer(CustomerRequestDTO customerRequestDTO) {
+        if (customerRequestDTO.getId() == null) {
+            Customer customer = new Customer();
+            customer.setUsername(customerRequestDTO.getUsername());
+            customer.setPassword(customerRequestDTO.getPassword());
+            customer.setFullName(customerRequestDTO.getFullName());
+            customer.setAddress(customerRequestDTO.getAddress());
+            customer.setPhone(customerRequestDTO.getPhone());
+            customer.setEmail(customerRequestDTO.getEmail());
+            customer.setBirthDay(customerRequestDTO.getBirthDay());
+            customer.setActive(customerRequestDTO.isActive());
+            return customerRepository.save(customer);
+        }
+        Customer existingCustomer = customerRepository.findById(customerRequestDTO.getId()).get();
+        existingCustomer.setId(customerRequestDTO.getId());
+        existingCustomer.setUsername(customerRequestDTO.getUsername());
+        existingCustomer.setPassword(customerRequestDTO.getPassword());
+        existingCustomer.setFullName(customerRequestDTO.getFullName());
+        existingCustomer.setAddress(customerRequestDTO.getAddress());
+        existingCustomer.setPhone(customerRequestDTO.getPhone());
+        existingCustomer.setEmail(customerRequestDTO.getEmail());
+        existingCustomer.setBirthDay(customerRequestDTO.getBirthDay());
+        existingCustomer.setActive(customerRequestDTO.isActive());
+        return customerRepository.save(existingCustomer);
     }
 
     @Transactional
