@@ -60,19 +60,8 @@ public class CustomerController {
     @GetMapping("/edit/{id}")
     public String editCustomerForm(@PathVariable Long id, Model model) throws IllegalAccessException {
         Customer editingCustomer = customerService.getCustomerById(id).orElseThrow(() -> new IllegalAccessException("Invalid customer Id: " + id));
-        // model.addAttribute("customer", editingCustomer);
-        CustomerRequestDTO dto = new CustomerRequestDTO(
-        editingCustomer.getId(),
-        editingCustomer.getUsername(),
-        editingCustomer.getPassword(),
-        editingCustomer.getFullName(),
-        editingCustomer.getAddress(),
-        editingCustomer.getPhone(),
-        editingCustomer.getEmail(),
-        editingCustomer.getBirthDay(),
-        editingCustomer.isActive()
-    );
-        model.addAttribute("customer", dto);
+        model.addAttribute("customer", editingCustomer);
+
         return "customers/form";
     }
 

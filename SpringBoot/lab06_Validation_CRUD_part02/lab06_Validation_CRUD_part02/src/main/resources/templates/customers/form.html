@@ -67,7 +67,8 @@
                     <label for="active" class="col-sm-2 col-form-label">Trạng thái</label>
                     <div class="col-sm-10">
                         <input type="checkbox" id="active" th:field="*{active}" />
-                        <label for="active" th:text="*{active} ? 'Hoạt động' : 'Khoá'"></label>
+<!--                        <label for="active" th:text="*{active} ? 'Hoạt động' : 'Khoá'"></label>-->
+                            <label>Hoạt động</label>
                         <span th:if="${#fields.hasErrors('active')}" th:errors="*{active}" class="text-danger"></span>
                     </div>
                 </div>
