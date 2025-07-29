@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAq6z5l5e5l5e5l5e5l5e5l5e5l5e" crossorigin="anonymous">
+</head>
+<body style="background-color: #ccc">
+  <section class="container my-3 p-3 bg-white">
+    <form action="#" th:action="@{/books/new"
+      th:object="${book}" method="post" enctype="multipart/form-data">
+      <input type="hidden" th:if="${book.id != null}" th:value="${book.id}" name="id"/>
+      <div class="card">
+        <div class="card-header">
+          <h1 th:text="${book.id != null ? 'Edit Book' : 'Create Book'}">Book Form</h1>
+        </div>
+        <div class="card-body">
+          <div class="row mb-3">
+            <label for="code" class="col-sm-2 col-form-label">Code</label>
+            <div class="col-sm-10">
+              <input type="text" id="code" th:field="*{code}" class="form-control" placeholder="book code" id="code"/>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="book name" id="name"/>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="imgUrl" class="col-sm-2 col-form-label">Image Url</label>
+            <div class="col-sm-10">
+                <input type="text" id="imgUrl" th:field="*{image}" class="form-control" placeholder="book image url" id="imgUrl"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+</body>
+</html>

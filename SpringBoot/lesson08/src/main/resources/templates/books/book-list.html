@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="thtp://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5>.2/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAq6z5l5e5l5e5l5e5l5e5l5e5l5e" crossorigin="anonymous">
+</head>
+<body style="background-color: #ccc">
+<section class="container my-3 bg-white">
+    <h2>Book List</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Authors</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.id}">1</td>
+                <td th:text="${book.code}">Code</td>
+                <td th:text="${book.name}">Name</td>
+                <td>
+                    <img th:src="@{${book.image}}" th:attr="alt=${book.name}" style="width: 50px; height: 50px;"/>
+                </td>
+                <td th:text="${book.quantity}">Quantity</td>
+                <td th:text="${book.price}">Price</td>
+                <td>
+                    <span th:each="author : ${book.authors}" class="mx-1 badge rounded-pill bg-warning text-dark" th:text="${author.getName()}">Author Name</span>
+                </td>
+                <td class="actions">
+                    <a th:href="@{/books/edit/{id}(id=${book.id})}" class="btn btn-primary">Edit</a>
+                    <a th:href="@{/books/delete/{id}(id=${book.id})}" onclick="return confirm('Are you sure you want to delete this book?');">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="#" th:href="@{/books/new}" class="btn btn-success">Add New Book</a>
+</section>
+
+</body>
+</html>
