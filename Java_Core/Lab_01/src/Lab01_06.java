@@ -16,5 +16,6 @@ public class Lab01_06 {
         m2 = sc.nextFloat();
         //Calculating
         System.out.println("Sum of n1 and m1 is " + (n1+m1));
+        System.out.println("Sum of n2 and m2 is " + (n2+m2));
     }
 }
