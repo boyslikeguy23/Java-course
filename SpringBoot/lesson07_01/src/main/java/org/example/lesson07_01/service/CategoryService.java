@@ -10,13 +10,14 @@ import java.util.Optional;
 
 @Service
 public class CategoryService {
+
+    private final CategoryRepository categoryRepository;
     @Autowired
-    private CategoryRepository categoryRepository;
     public CategoryService (CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
     public List<Category> getAllCategories() {
-        System.out.println(categoryRepository.findAll());
+//        System.out.println(categoryRepository.findAll());
         return categoryRepository.findAll();
     }
     public Optional<Category> getCategoryById(Long id) {

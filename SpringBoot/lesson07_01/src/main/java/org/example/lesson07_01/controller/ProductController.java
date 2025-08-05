@@ -29,6 +29,7 @@ public class ProductController {
     @GetMapping("/create")
     public String createProduct(Model model) {
         model.addAttribute("product", new Product());
+        model.addAttribute("categories", categoryService.getAllCategories()); // Đảm bảo danh sách category có dữ liệu
         return "product/product-form";
     }
 

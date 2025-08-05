@@ -10,13 +10,14 @@ import java.util.Optional;
 
 @Service
 public class ProductService {
+
+    private final ProductRepository productRepository;
     @Autowired
-    private ProductRepository productRepository;
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
     public List<Product> getAllProducts() {
-        System.out.println(productRepository.findAll());
+//        System.out.println(productRepository.findAll());
         return productRepository.findAll();
     }
     public Optional<Product> findById(Long id) {

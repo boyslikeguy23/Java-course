@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ArrayandString/ArrayandString.iml" filepath="$PROJECT_DIR$/ArrayandString/ArrayandString.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FirstFile/FirstFile.iml" filepath="$PROJECT_DIR$/FirstFile/FirstFile.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Java_Core.iml" filepath="$PROJECT_DIR$/.idea/Java_Core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab_01/Lab_01.iml" filepath="$PROJECT_DIR$/Lab_01/Lab_01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab_02/Lab_02.iml" filepath="$PROJECT_DIR$/Lab_02/Lab_02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab_03/Lab_03.iml" filepath="$PROJECT_DIR$/Lab_03/Lab_03.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab_04/Lab_04.iml" filepath="$PROJECT_DIR$/Lab_04/Lab_04.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab_05/Lab_05.iml" filepath="$PROJECT_DIR$/Lab_05/Lab_05.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab_06/Lab_06.iml" filepath="$PROJECT_DIR$/Lab_06/Lab_06.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab_07/Lab_07.iml" filepath="$PROJECT_DIR$/Lab_07/Lab_07.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab_08/Lab_08.iml" filepath="$PROJECT_DIR$/Lab_08/Lab_08.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab_09/Lab_09.iml" filepath="$PROJECT_DIR$/Lab_09/Lab_09.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab_10/Lab_10.iml" filepath="$PROJECT_DIR$/Lab_10/Lab_10.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab_11/Lab_11.iml" filepath="$PROJECT_DIR$/Lab_11/Lab_11.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lesson10/Lesson10.iml" filepath="$PROJECT_DIR$/Lesson10/Lesson10.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lesson11/Lesson11.iml" filepath="$PROJECT_DIR$/Lesson11/Lesson11.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lesson2/Lesson2.iml" filepath="$PROJECT_DIR$/Lesson2/Lesson2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lesson3/Lesson3.iml" filepath="$PROJECT_DIR$/Lesson3/Lesson3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lesson5_Calculator/Lesson5_Calculator.iml" filepath="$PROJECT_DIR$/Lesson5_Calculator/Lesson5_Calculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lesson7/Lesson7.iml" filepath="$PROJECT_DIR$/Lesson7/Lesson7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lesson8/Lesson8.iml" filepath="$PROJECT_DIR$/Lesson8/Lesson8.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lesson9/Lesson9.iml" filepath="$PROJECT_DIR$/Lesson9/Lesson9.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LuatLaoDong/LuatLaoDong.iml" filepath="$PROJECT_DIR$/LuatLaoDong/LuatLaoDong.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Practice/Practice.iml" filepath="$PROJECT_DIR$/Practice/Practice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Practice_02/Practice_02.iml" filepath="$PROJECT_DIR$/Practice_02/Practice_02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TestFinal/TestFinal.iml" filepath="$PROJECT_DIR$/TestFinal/TestFinal.iml" />
+    </modules>
+  </component>
+</project>

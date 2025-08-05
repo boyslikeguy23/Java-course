@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class CustomerController {
     }
 
     @PostMapping("/save")
-    public String saveCustomer(@ModelAttribute CustomerRequestDTO customerRequestDTO, Model model, BindingResult result) {
+    public String saveCustomer(@Validated @ModelAttribute CustomerRequestDTO customerRequestDTO, BindingResult result, Model model) {
         System.out.println("ID nhận được từ form: " + customerRequestDTO.getId()); // Thêm dòng này để debug
 
         if (customerService.existsByUsername(customerRequestDTO.getUsername()) && customerRequestDTO.getId() == null) {
@@ -59,9 +60,22 @@ public class CustomerController {
 
     @GetMapping("/edit/{id}")
     public String editCustomerForm(@PathVariable Long id, Model model) throws IllegalAccessException {
-        Customer editingCustomer = customerService.getCustomerById(id).orElseThrow(() -> new IllegalAccessException("Invalid customer Id: " + id));
-        model.addAttribute("customer", editingCustomer);
+        Customer customer = customerService.getCustomerById(id)
+                .orElseThrow(() -> new IllegalAccessException("Invalid customer Id: " + id));
 
+        // Chuyển từ entity sang DTO
+        CustomerRequestDTO dto = new CustomerRequestDTO();
+        dto.setId(customer.getId());
+        dto.setUsername(customer.getUsername());
+        dto.setPassword(customer.getPassword()); // Nếu không mã hoá thì có thể bỏ
+        dto.setFullName(customer.getFullName());
+        dto.setAddress(customer.getAddress());
+        dto.setPhone(customer.getPhone());
+        dto.setEmail(customer.getEmail());
+        dto.setBirthDay(customer.getBirthDay());
+        dto.setActive(customer.isActive());
+
+        model.addAttribute("customer", dto);
         return "customers/form";
     }
 
