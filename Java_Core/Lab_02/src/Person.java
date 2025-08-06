@@ -1,6 +1,12 @@
 import java.util.Scanner;
 
 public class Person {
+
+    public static void main(String[] args) {
+        Person person = new Person();
+        person.input();
+        person.view();
+    }
     private String name;
     private String address;
     private double salary;
